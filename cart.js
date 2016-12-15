@@ -36,7 +36,7 @@ class Cart{
     {
       if (this.itemList[i].shipping == days)
       {
-        subCart.addItem(this.itemList[i]); 
+        subCart.addItem(this.itemList[i]);
       }
     }
     return subCart();
