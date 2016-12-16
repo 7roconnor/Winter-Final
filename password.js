@@ -24,42 +24,47 @@ class Password{
 
   validPrivateKey()
   {
-    let isDashCorrect = false;
-    let areNumbersCorrect = false;
-
-    //are the dashes correct?
-    if(this.privateKey[4] == '-' && this.privateKey[9] == '-')
+    if (this.PrivateKey[4] != '-' || this.privateKey[9] != '-')
     {
-      isDashCorrect = true;
+      return false;
     }
     else
     {
-        console.log('Error: PrivateKey dashes are not correct');
-        isDashCorrect == false;
+      for (let i = 0; i < this.PrivateKey.length; i++)
+      {
+        if(i == 4 || i == 9)
+        {
+          i++
+        }
+        if (Number.isNaN(this.privateKey[i]) == true)
+        {
+          return false;
+        }
+
+      }
+      return true; 
     }
 
-    //loops through privateKey and checks if they are numbers
-    for (let i = 0; i < this.privateKey.length; i++)
+
+  }
+
+
+  //Static function below this comment.
+  static makePrivateKey()
+  {
+    let key = '';
+    let limit = 14;
+    for (let i = 0; i < limit; i++)
     {
-      //makes sure it doesn't mark dashes as wrong
-      if (i != 5 && i != 9)
+      if (i != 4 && i != 9)
       {
-          if (Number.isNaN(this.privateKey) == true)
-          {
-              console.log("Error: not privateKey not all Numbers");
-              areNumbersCorrect = false;
-          }
-          else
-          {
-              areNumbersCorrect = true;
-          }
+        key  += Math.floor(Math.random() * 10);
+      }
+      else if (i == 4 || i == 9)
+      {
+        key += '-';
       }
     }
-
-    if (areNumbersCorrect && isDashCorrect)
-    {
-        return true;
-    }
   }
-  //Static function below this comment.
+
 }
